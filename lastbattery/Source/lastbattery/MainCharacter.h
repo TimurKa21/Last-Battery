@@ -23,7 +23,7 @@ protected:
 public:
 	
 	UPROPERTY(VisibleAnywhere)
-	class USpringArmComponent* SpringArm;
+	class USpringArmComponent* SpringArm; 
 	
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* CameraComponent;
