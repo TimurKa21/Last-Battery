@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FlashLightActor.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
@@ -33,6 +34,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Movment")
 	float Runing = 800.0f;
+
+	UPROPERTY()
+	AFlashLightActor* SpawnFlashLightActor;
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -48,4 +52,5 @@ public:
 
 	void StopRunning();
 
+	void OnToggleFlashlight();
 };

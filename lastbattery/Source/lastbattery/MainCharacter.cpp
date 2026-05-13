@@ -3,6 +3,8 @@
 
 #include "MainCharacter.h"
 
+#include "Components/InputComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
@@ -18,6 +20,11 @@ AMainCharacter::AMainCharacter()
 
 	bUseControllerRotationYaw = true;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+    if (SpawnFlashLightActor)
+    {
+	    SpawnFlashLightActor->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("FlashSocket"));
+    }
 }
 
 // Called when the game starts or when spawned
@@ -47,6 +54,9 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+
+	PlayerInputComponent->BindAction("ToggleFlashLight", IE_Pressed, this, &AMainCharacter::OnToggleFlashlight);
+
 }
 
 void AMainCharacter::ForwardBack(float Value)
@@ -76,5 +86,13 @@ void AMainCharacter::Runingg()
 void AMainCharacter::StopRunning()
 {
 	GetCharacterMovement()->MaxWalkSpeed = Walking;
+}
+
+void AMainCharacter::OnToggleFlashlight()
+{
+	if (SpawnFlashLightActor)
+	{
+		SpawnFlashLightActor->ToggleLight();
+	}
 }
 
