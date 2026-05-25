@@ -30,9 +30,17 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Mesh;
 
+	UPROPERTY(BlueprintReadWrite, Category="Batery")
+	float BateryPower = 100.0f;
+	
+	UPROPERTY(EditAnywhere, Category="Batery")
+	float BatteryDrainSpeed = 2.0f;
+
+
 	void ToggleLight();
 
 private:
 	bool bIsOn;
+	bool IsFlashLightEnbled;
 
 };

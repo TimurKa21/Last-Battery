@@ -21,17 +21,25 @@ AMainCharacter::AMainCharacter()
 	bUseControllerRotationYaw = true;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
-    if (SpawnFlashLightActor)
-    {
-	    SpawnFlashLightActor->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("FlashSocket"));
-    }
 }
 
 // Called when the game starts or when spawned
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (FlashLightClass)
+	{
+		SpawnFlashLightActor =
+			GetWorld()->SpawnActor<AFlashLightActor>(
+				FlashLightClass
+			);
+	}
 	
+    if (SpawnFlashLightActor)
+    {
+	    SpawnFlashLightActor->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("FlashSocket"));
+    }
 }
 
 // Called every frame

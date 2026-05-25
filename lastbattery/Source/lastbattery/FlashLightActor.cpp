@@ -10,7 +10,7 @@ AFlashLightActor::AFlashLightActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh Light");
-	Mesh->SetupAttachment(RootComponent);
+	RootComponent = Mesh;
 
 	SpotLight = CreateDefaultSubobject<USpotLightComponent>("Spot Light");
 	SpotLight->SetupAttachment(Mesh);
@@ -32,10 +32,20 @@ void AFlashLightActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (bIsOn)
+	{
+		BateryPower -= BatteryDrainSpeed * DeltaTime;
+	}
+		BateryPower = FMath::Clamp(BateryPower, 0.0f, 100.0f);
 }
 
 void AFlashLightActor::ToggleLight()
 {
+	if (BateryPower <= 0.0f)
+	{
+		return;
+	}
+	
 	  bIsOn = !bIsOn;
 	  SpotLight->SetVisibility(bIsOn);
 }

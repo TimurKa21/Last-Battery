@@ -29,14 +29,17 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* CameraComponent;
 	
+	UPROPERTY()
+	AFlashLightActor* SpawnFlashLightActor;
+
+	UPROPERTY(EditAnywhere, Category = "FlashLight")
+	TSubclassOf<AFlashLightActor> FlashLightClass;
+	
 	UPROPERTY(EditAnywhere,Category="Movment")
 	float Walking = 600.0f;
 
 	UPROPERTY(EditAnywhere, Category="Movment")
 	float Runing = 800.0f;
-
-	UPROPERTY()
-	AFlashLightActor* SpawnFlashLightActor;
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
