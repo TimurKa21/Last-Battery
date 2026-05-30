@@ -32,6 +32,9 @@ public:
 	UPROPERTY()
 	AFlashLightActor* SpawnFlashLightActor;
 
+	UPROPERTY()
+	class ABattaryPikup* CurrentBattery;
+
 	UPROPERTY(EditAnywhere, Category = "FlashLight")
 	TSubclassOf<AFlashLightActor> FlashLightClass;
 	
@@ -56,4 +59,11 @@ public:
 	void StopRunning();
 
 	void OnToggleFlashlight();
+
+	void Interact();
+
+	AFlashLightActor* GetFlashlight() const
+	{
+		return SpawnFlashLightActor;
+	}
 };

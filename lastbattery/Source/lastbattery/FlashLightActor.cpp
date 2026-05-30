@@ -37,6 +37,23 @@ void AFlashLightActor::Tick(float DeltaTime)
 		BateryPower -= BatteryDrainSpeed * DeltaTime;
 	}
 		BateryPower = FMath::Clamp(BateryPower, 0.0f, 100.0f);
+
+	if (BateryPower <20.0f && bIsOn)
+	{
+		float RandomFlicker = FMath::FRandRange(0.0f, 1.0f);
+
+		if (RandomFlicker > 0.97f)
+		{
+			SpotLight->ToggleVisibility();
+		}
+	}
+
+	if (BateryPower <= 0.0f && bIsOn)
+	{
+		bIsOn = false;
+
+		SpotLight->SetVisibility(false);
+	}
 }
 
 void AFlashLightActor::ToggleLight()
