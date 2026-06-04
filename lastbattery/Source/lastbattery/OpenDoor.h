@@ -3,20 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FlashLightActor.h"
+#include "MainCharacter.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
-#include "BattaryPikup.generated.h"
+#include "OpenDoor.generated.h"
 
-class AMainCharacter;
 UCLASS()
-class LASTBATTERY_API ABattaryPikup : public AActor
+class LASTBATTERY_API AOpenDoor : public AActor
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	ABattaryPikup();
+	AOpenDoor();
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,21 +26,27 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* Mesh;
+	UStaticMeshComponent* MeshDoor;
+	
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* Frame;
 
 	UPROPERTY(VisibleAnywhere)
 	USphereComponent* Sphere;
 
-	UPROPERTY(EditAnywhere, Category="Battaery")
-	float BatteryAmount = 25.0f;
-	
-	bool bCanPickup = false;
-	
+	bool bCanInteract;
+	bool isOpen;
 
-	UPROPERTY()
-	AMainCharacter* Currentplayer; 
+	UPROPERTY(EditAnywhere, Category="Door")
+	FRotator ClosedRotation;
+
+	UPROPERTY(EditAnywhere, Category="Door")
+	FRotator OpenRotation;
 	
+	AMainCharacter* CurrentPlayer;
+
 	UFUNCTION()
+	
 	void OnOverlapBegin(
 		UPrimitiveComponent* OverlappedComp, 
 		AActor* OtherActor, 
@@ -59,7 +64,5 @@ public:
 		int32 OtherBodyIndex
 	);
 
-	void AddEnergy(AMainCharacter* playerCharacter);
-
-	void PickUp();
+	void Open();
 };

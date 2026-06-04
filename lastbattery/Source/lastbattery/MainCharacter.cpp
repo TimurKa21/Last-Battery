@@ -4,6 +4,7 @@
 #include "MainCharacter.h"
 
 #include "BattaryPikup.h"
+#include "OpenDoor.h"
 #include "Components/InputComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -67,6 +68,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("ToggleFlashLight", IE_Pressed, this, &AMainCharacter::OnToggleFlashlight);
 
 	PlayerInputComponent->BindAction("Interact",IE_Pressed,this,&AMainCharacter::Interact);
+	PlayerInputComponent->BindAction("InteractDoor",IE_Pressed,this,&AMainCharacter::IneractDoor);
 
 }
 
@@ -112,6 +114,14 @@ void AMainCharacter::Interact()
 	if (CurrentBattery)
 	{
 		CurrentBattery->PickUp();
+	}
+}
+
+void AMainCharacter::IneractDoor()
+{
+	if (CurremtOpenDoor)
+	{
+		CurremtOpenDoor->Open();
 	}
 }
 

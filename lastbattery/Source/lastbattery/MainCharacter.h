@@ -35,6 +35,9 @@ public:
 	UPROPERTY()
 	class ABattaryPikup* CurrentBattery;
 
+	UPROPERTY()
+	class AOpenDoor* CurremtOpenDoor;
+
 	UPROPERTY(EditAnywhere, Category = "FlashLight")
 	TSubclassOf<AFlashLightActor> FlashLightClass;
 	
@@ -61,6 +64,8 @@ public:
 	void OnToggleFlashlight();
 
 	void Interact();
+
+	void IneractDoor();
 
 	AFlashLightActor* GetFlashlight() const
 	{
