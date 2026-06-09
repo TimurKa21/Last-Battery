@@ -3,19 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MainCharacter.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
-#include "OpenDoor.generated.h"
+#include "Key.generated.h"
 
+class USphereComponent;
 UCLASS()
-class LASTBATTERY_API AOpenDoor : public AActor
+
+class LASTBATTERY_API AKey : public AActor
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	AOpenDoor();
+	AKey();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,28 +27,21 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* MeshDoor;
-	
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* Frame;
+	UStaticMeshComponent* Mesh;
 
 	UPROPERTY(VisibleAnywhere)
 	USphereComponent* Sphere;
 
-	bool bCanInteract;
-	bool isOpen;
-
-	UPROPERTY(EditAnywhere, Category="Door")
-	FRotator ClosedRotation;
-
-	UPROPERTY(EditAnywhere, Category="Door")
-	FRotator OpenRotation;
+	UPROPERTY()
+	class AMainCharacter* CurrentCharacter;
 
 	UPROPERTY()
-	AMainCharacter* CurrentPlayer;
+	class AOpenDoor* OpenDoor;
+
+	UPROPERTY()
+	bool HasKey;
 
 	UFUNCTION()
-	
 	void OnOverlapBegin(
 		UPrimitiveComponent* OverlappedComp, 
 		AActor* OtherActor, 
@@ -64,6 +58,6 @@ public:
 		UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex
 	);
-
-	void Open();
+	
+	void KeyPickUp();
 };

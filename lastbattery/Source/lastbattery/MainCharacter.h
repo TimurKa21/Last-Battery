@@ -38,6 +38,9 @@ public:
 	UPROPERTY()
 	class AOpenDoor* CurremtOpenDoor;
 
+	UPROPERTY()
+	class AKey* KeyPickUp;
+
 	UPROPERTY(EditAnywhere, Category = "FlashLight")
 	TSubclassOf<AFlashLightActor> FlashLightClass;
 	
@@ -46,6 +49,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Movment")
 	float Runing = 800.0f;
+
+	UPROPERTY()
+	bool bHasKey;
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -66,6 +72,8 @@ public:
 	void Interact();
 
 	void IneractDoor();
+	
+	void KeySeting();
 
 	AFlashLightActor* GetFlashlight() const
 	{

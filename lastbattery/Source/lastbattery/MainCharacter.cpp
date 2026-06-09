@@ -4,6 +4,7 @@
 #include "MainCharacter.h"
 
 #include "BattaryPikup.h"
+#include "Key.h"
 #include "OpenDoor.h"
 #include "Components/InputComponent.h"
 #include "Components/SkeletalMeshComponent.h"
@@ -70,6 +71,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Interact",IE_Pressed,this,&AMainCharacter::Interact);
 	PlayerInputComponent->BindAction("InteractDoor",IE_Pressed,this,&AMainCharacter::IneractDoor);
 
+	PlayerInputComponent->BindAction("PickKey",IE_Pressed,this,&AMainCharacter::KeySeting);
+
 }
 
 void AMainCharacter::ForwardBack(float Value)
@@ -122,6 +125,14 @@ void AMainCharacter::IneractDoor()
 	if (CurremtOpenDoor)
 	{
 		CurremtOpenDoor->Open();
+	}
+}
+
+void AMainCharacter::KeySeting()
+{
+	if(KeyPickUp)
+	{
+	KeyPickUp->KeyPickUp();
 	}
 }
 

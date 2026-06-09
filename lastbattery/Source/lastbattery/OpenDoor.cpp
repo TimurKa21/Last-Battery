@@ -101,6 +101,12 @@ void AOpenDoor::Open()
 	{
 		return;
 	}
+
+	if (!CurrentPlayer->bHasKey)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Need Key"));
+		return;
+	}
 	
 	isOpen = !isOpen;
 }
