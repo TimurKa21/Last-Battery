@@ -39,7 +39,7 @@ public:
 	class AOpenDoor* CurremtOpenDoor;
 
 	UPROPERTY()
-	class AKey* KeyPickUp;
+	class ADoorKey* KeyPickUp;
 
 	UPROPERTY(EditAnywhere, Category = "FlashLight")
 	TSubclassOf<AFlashLightActor> FlashLightClass;

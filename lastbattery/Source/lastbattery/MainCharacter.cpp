@@ -4,7 +4,7 @@
 #include "MainCharacter.h"
 
 #include "BattaryPikup.h"
-#include "Key.h"
+#include "DoorKey.h"
 #include "OpenDoor.h"
 #include "Components/InputComponent.h"
 #include "Components/SkeletalMeshComponent.h"

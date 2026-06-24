@@ -3,20 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
-#include "Key.generated.h"
+#include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Engine/StaticMesh.h"
+#include "DoorKey.generated.h"
 
-class USphereComponent;
 UCLASS()
-
-class LASTBATTERY_API AKey : public AActor
+class LASTBATTERY_API ADoorKey : public AActor
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	AKey();
+	ADoorKey();
 
 protected:
 	// Called when the game starts or when spawned
